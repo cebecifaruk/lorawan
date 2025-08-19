@@ -1,4 +1,3 @@
-mod enc;
 mod phy_payload;
 
 use phy_payload::PHYPayload;
@@ -8,6 +7,16 @@ use phy_payload::mac_payload::MACPayload;
 use phy_payload::mac_payload::frame_header::FrameHeader;
 
 fn main() {
+    let appskey: [u8; 16] = [
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
+        0x0F,
+    ];
+
+    let nwsk: [u8; 16] = [
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E,
+        0x0F,
+    ];
+
     let x: PHYPayload = PHYPayload {
         header: MACHeader {
             message_type: MessageType::UnconfirmedDataUp,
@@ -15,31 +24,20 @@ fn main() {
         },
         payload: MACPayload {
             header: FrameHeader {
-                dev_addr: [0x59, 0xCC, 0x65, 0x01],
+                dev_addr: [0x03, 0x02, 0x01, 0x00],
                 f_ctrl: 0x00,
-                f_count: 0x0040,
+                f_count: 3,
             },
             port: Some(0x55),
-            data: vec![0x3d, 0xde, 0x1b, 0xf1],
+            data: "Hello, World!".as_bytes().to_vec(),
         },
-        mic: [0xc4, 0xcf, 0xd7, 0x13],
     };
 
-    println!("{:02x?}", x.to_bytes());
+    let bytes = x.to_bytes(true, 3, &appskey, &nwsk);
 
-    let appskey = [
-        0x87, 0x07, 0x73, 0xA0, 0xB3, 0x3A, 0x62, 0x06, 0xA7, 0x29, 0xE0, 0x23, 0xF2, 0x50, 0x67,
-        0xFF,
-    ];
-
-    println!(
-        "Block 1: {:02x?}",
-        enc::encrypt_payload(
-            true,
-            [0x59, 0xCC, 0x65, 0x01],
-            0x0040,
-            &[0x03, 0x67, 0x27, 0x01],
-            appskey
-        )
-    );
+    print!("{{");
+    for byte in bytes.iter() {
+        print!("0x{:02x}, ", byte);
+    }
+    println!("}}");
 }

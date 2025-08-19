@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 aes = "0.8.4"
+cmac = "0.7.2"
