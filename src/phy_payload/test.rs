@@ -14,6 +14,7 @@ fn test_simple_packet() {
                 dev_addr: [0x59, 0xCC, 0x65, 0x01],
                 f_ctrl: 0x00,
                 f_count: 0x0040,
+                f_opts: [0x00; 15],
             },
             port: Some(0x55),
             data: vec![0x03, 0x67, 0x27, 0x01],

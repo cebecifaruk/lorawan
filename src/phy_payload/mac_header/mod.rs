@@ -37,7 +37,7 @@ impl MACHeader {
         return [message_type | major_version];
     }
 
-    pub fn from_bytes(bytes: [u8; 1]) -> Self {
+    pub fn from_bytes(bytes: &[u8]) -> Self {
         let message_type = match (bytes[0] >> 5) & 0b0000_0111 {
             0b000 => MessageType::JoinRequest,
             0b001 => MessageType::JoinAccept,

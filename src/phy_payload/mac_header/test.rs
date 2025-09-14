@@ -41,7 +41,7 @@ fn test_mac_header_to_bytes_unconfirmed_data_up() {
 #[test]
 fn test_mac_header_from_bytes_join_request() {
     let bytes = [0x00];
-    let header = MACHeader::from_bytes(bytes);
+    let header = MACHeader::from_bytes(&bytes);
 
     assert!(header.message_type == MessageType::JoinRequest);
     assert!(header.major_version == MajorVersion::LoRaWANR1);

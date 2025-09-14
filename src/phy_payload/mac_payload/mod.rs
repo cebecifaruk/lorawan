@@ -27,6 +27,28 @@ impl MACPayload {
         bytes
     }
 
+    pub fn from_bytes(bytes: &[u8]) -> Option<Self> {
+        let header = frame_header::FrameHeader::from_bytes(bytes);
+
+        if header.is_none() {
+            return None;
+        }
+
+        let header = header.unwrap();
+        let header_len = header.len();
+
+        // TODO: The case of handling non-present fport case should be covered.
+        let port = Some(bytes[header_len]);
+        let mut data = Vec::new();
+
+        for i in header_len + 1..bytes.len() {
+            data.push(bytes[i]);
+            // TODO: Data will be decrypted here!
+        }
+
+        Some(Self { header, port, data })
+    }
+
     fn calculate_block_i(is_up_link: bool, dev_addr: [u8; 4], f_count: u32, i: u8) -> [u8; 16] {
         let result: [u8; 16] = [
             0x01,

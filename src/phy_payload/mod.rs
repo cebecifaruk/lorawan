@@ -31,6 +31,22 @@ impl PHYPayload {
         bytes
     }
 
+    pub fn from_bytes(bytes: &[u8]) -> Option<Self> {
+        let header = MACHeader::from_bytes(bytes);
+
+        let payload = MACPayload::from_bytes(&bytes[1..]);
+
+        if payload.is_none() {
+            return None;
+        }
+
+        let payload = payload.unwrap();
+
+        // TODO: We should check mic code also!
+
+        return Some(PHYPayload { header, payload });
+    }
+
     pub fn get_mic_msg(&self, is_up_link: bool, f_count: u32, appsk: &[u8; 16]) -> Vec<u8> {
         let mut msg: Vec<u8> = Vec::new();
         msg.push(self.header.to_bytes()[0]);
