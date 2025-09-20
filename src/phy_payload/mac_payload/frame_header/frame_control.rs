@@ -1,15 +1,8 @@
 pub struct DownlinkFrameControl {
-<<<<<<< HEAD
     pub adr: bool,
     pub ack: bool,
     pub pending: bool,
     pub options_length: u8,
-=======
-    adr: bool,
-    ack: bool,
-    pending: bool,
-    options_length: u8,
->>>>>>> origin/main
 }
 
 impl DownlinkFrameControl {
@@ -42,19 +35,11 @@ impl DownlinkFrameControl {
 }
 
 pub struct UplinkFrameControl {
-<<<<<<< HEAD
     pub adr: bool,
     pub adr_ack_req: bool,
     pub ack: bool,
     pub class_b: bool,
     pub options_length: u8,
-=======
-    adr: bool,
-    adr_ack_req: bool,
-    ack: bool,
-    class_b: bool,
-    options_length: u8,
->>>>>>> origin/main
 }
 
 impl UplinkFrameControl {

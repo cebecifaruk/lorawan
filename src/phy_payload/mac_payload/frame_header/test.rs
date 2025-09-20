@@ -1,5 +1,5 @@
 // TODO: Write tests for Downlink and Uplink frame control structures
-<<<<<<< HEAD
+
 #[cfg(test)]
 mod tests {
     use crate::phy_payload::mac_payload::frame_header::frame_control::UplinkFrameControl;
@@ -78,5 +78,3 @@ mod tests {
 
     }
 }
-=======
->>>>>>> origin/main
