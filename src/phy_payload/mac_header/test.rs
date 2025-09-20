@@ -37,6 +37,7 @@ fn test_mac_header_to_bytes_unconfirmed_data_up() {
 }
 
 // TODO: Write more tests for to_bytes
+<<<<<<< HEAD
 #[test]
 fn test_mac_header_to_bytes_all_message_types() {
     let cases = vec! [
@@ -84,6 +85,8 @@ fn test_mac_header_to_bytes_major_versions() {
 
 }
 
+=======
+>>>>>>> origin/main
 
 #[test]
 fn test_mac_header_from_bytes_join_request() {
@@ -95,6 +98,7 @@ fn test_mac_header_from_bytes_join_request() {
 }
 
 // TODO: Write more tests for from_bytes
+<<<<<<< HEAD
 #[test]
 fn test_mac_header_from_bytes_all_message_types() {
     let cases = vec![
@@ -143,3 +147,5 @@ fn test_mac_header_roundtrip() {
     assert_eq!(header.message_type, parsed.message_type);
     assert_eq!(header.major_version, parsed.major_version);
 }
+=======
+>>>>>>> origin/main

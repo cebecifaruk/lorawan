@@ -1,5 +1,8 @@
 mod frame_control;
+<<<<<<< HEAD
 pub mod test;
+=======
+>>>>>>> origin/main
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct FrameHeader {
@@ -17,6 +20,10 @@ impl FrameHeader {
         // Little Endian encoding for f_count
         bytes[5] = (self.f_count & 0x00FF) as u8;
         bytes[6] = ((self.f_count >> 8) & 0x00FF) as u8;
+<<<<<<< HEAD
+=======
+        // TODO: Lets implement f_opts part
+>>>>>>> origin/main
         bytes
     }
 
@@ -33,8 +40,12 @@ impl FrameHeader {
         let mut f_opts: [u8; 15] = [0x00; 15];
 
         for i in 0..f_opts_length {
+<<<<<<< HEAD
             f_opts[i] = bytes[7 + i]; 
             // TODO data wiill be decypted here!
+=======
+            f_opts[i] = bytes[7 + i];
+>>>>>>> origin/main
         }
 
         let result = FrameHeader {
@@ -47,9 +58,15 @@ impl FrameHeader {
         Some(result)
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
     pub fn len(&self) -> usize {
         7 + (self.f_ctrl & 0b0000_1111) as usize
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main

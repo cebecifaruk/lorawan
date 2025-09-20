@@ -5,4 +5,8 @@ edition = "2024"
 
 [dependencies]
 aes = "0.8.4"
+<<<<<<< HEAD
 cmac = "0.7.2"
+=======
+cmac = "0.7.2"
+>>>>>>> origin/main
